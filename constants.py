@@ -1,0 +1,13 @@
+HOSTS = ['127.0.0.1','172.29.123.50']
+
+HOST_NUMBER = 0
+
+PORT = 8080
+DEBUG_MODE = True
+
+#LOGS
+FILE_NAME_LOG = 'logs.log'
+
+
+#IP ALLOW
+ALLOWED_IPS = ['172.23.48']
