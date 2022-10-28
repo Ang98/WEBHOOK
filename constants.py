@@ -1,4 +1,4 @@
-HOSTS = ['127.0.0.1','172.29.123.50']
+HOSTS = ['0.0.0.0','172.29.123.50']
 
 HOST_NUMBER = 0
 
@@ -11,3 +11,12 @@ FILE_NAME_LOG = 'logs.log'
 
 #IP ALLOW
 ALLOWED_IPS = ['172.23.48']
+
+
+#SQL CONFIG
+DB_USER = 'flask'
+DB_PASSWORD = 'rimac2022'
+DB_HOST = 'mysql'
+DB_NAME = 'flask'
+
+SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'

@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  flask:
+    container_name: rimac_flask
+    build: .
+    command: python main.py
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_NAME: flask
+      DB_USER: flask
+      DB_PASSWORD: rimac2022
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/App
+  mysql:
+    container_name: rimac_mysql
+    image: mysql:5.7
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rimac2022
+      MYSQL_DATABASE: flask
+      MYSQL_USER: flask
+      MYSQL_PASSWORD: rimac2022
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: rimac_phpmyadmin
+    ports:
+      - "5010:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: flask
+      PMA_PASSWORD: rimac2022
+      MYSQL_ROOT_PASSWORD: rimac2022
+
+volumes:
+  mysql-data:
+    driver: local
